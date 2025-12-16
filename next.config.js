@@ -1,8 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const repo = 'dev-page'
+
+module.exports = {
   output: 'export',
   images: { unoptimized: true },
   trailingSlash: true,
-}
 
-module.exports = nextConfig
+  basePath: `/${repo}`,
+  assetPrefix: `/${repo}/`,
+}
