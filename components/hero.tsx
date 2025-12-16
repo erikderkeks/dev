@@ -32,7 +32,7 @@ export function Hero({
         >
           {/* OPTIONAL: Profilbild */}
           <div className="heroAvatar">
-            <img src="/dev-page/profile.webp" alt={name} />
+            <img src="/dev/profile.webp" alt={name} />
           </div>
 
           <p className="kicker">{handle}</p>

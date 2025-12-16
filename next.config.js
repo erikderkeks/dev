@@ -1,4 +1,4 @@
-const repo = 'dev-page'
+const repo = 'dev'
 
 module.exports = {
   output: 'export',
