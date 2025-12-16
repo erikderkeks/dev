@@ -8,7 +8,7 @@ export function Footer() {
           <div>
             <div className="kicker">Contact</div>
             <div style={{ marginTop: 8, color: 'rgba(255,255,255,0.72)' }}>
-              erik.oberbillig@sisag.ch
+              erikderkeks@gmail.com
             </div>
             <div style={{ marginTop: 6, color: 'rgba(255,255,255,0.46)' }}>
               Monochrome liquid glass · calm, sharp, minimal
@@ -20,7 +20,7 @@ export function Footer() {
               <Github className="icon" />
               <span>GitHub</span>
             </a>
-            <a className="pill" href="mailto:erik.oberbillig@sisag.ch">
+            <a className="pill" href="mailto:erikderkeks@gmail.com">
               <Mail className="icon" />
               <span>Email</span>
             </a>
@@ -29,7 +29,7 @@ export function Footer() {
       </div>
 
       <div style={{ marginTop: 16, textAlign: 'center' }}>
-        © {new Date().getFullYear()} Erik Oberbillig
+        © {new Date().getFullYear()} erikderkeks
       </div>
     </footer>
   )

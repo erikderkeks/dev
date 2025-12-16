@@ -19,7 +19,7 @@ export function TopNav({ username }: { username: string }) {
   const [open, setOpen] = useState(false)
 
   const gh = `https://github.com/${username}`
-  const mail = 'mailto:erik.oberbillig@sisag.ch'
+  const mail = 'mailto:erikderkeks@gmail.com'
 
   return (
     <header className="nav">
@@ -31,7 +31,7 @@ export function TopNav({ username }: { username: string }) {
           </div>
 
           <div className="brandText">
-            <strong>Erik Oberbillig</strong>
+            <strong>erikderkeks</strong>
             <span className="mono">{`github.com/${username}`}</span>
           </div>
         </div>

@@ -15,7 +15,7 @@ const mono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Erik Oberbillig — Developer',
+  title: 'erikderkeks — Developer',
   description: 'Monochrome developer page with liquid glass UI and subtle motion.',
 }
 

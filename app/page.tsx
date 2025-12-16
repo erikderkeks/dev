@@ -27,7 +27,7 @@ export default async function Home() {
         <TopNav username={username} />
 
         <Hero
-          name={profile?.name ?? 'Erik Oberbillig'}
+          name={profile?.name ?? 'Erik'}
           handle={`@${username}`}
           bio={
             profile?.bio ??
