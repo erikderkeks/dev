@@ -32,7 +32,7 @@ export function Hero({
         >
           {/* OPTIONAL: Profilbild */}
           <div className="heroAvatar">
-            <img src="/profile.webp" alt={name} />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/profile.webp`} alt={name} />
           </div>
 
           <p className="kicker">{handle}</p>
