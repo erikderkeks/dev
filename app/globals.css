@@ -555,3 +555,154 @@ button{ font-family: inherit; }
     linear-gradient(180deg, rgba(255,255,255,0.04), transparent 36%),
     var(--bg);
 }
+
+@media (max-width: 860px) {
+  .hero {
+    padding: 72px 0 28px 0;
+  }
+
+  .heroGrid {
+    gap: 18px;
+  }
+
+  .heroAvatar {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 18px;
+  }
+
+  .heroTitle {
+    font-size: clamp(38px, 9vw, 52px);
+    line-height: 1.05;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .heroMeta {
+    gap: 8px;
+  }
+
+  .pill {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 860px) {
+  .sidePanel {
+    padding: 16px;
+    border-radius: 20px;
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.03)
+    );
+  }
+
+  .sidePanel .sep {
+    margin: 18px 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .section {
+    padding: 44px 0;
+  }
+
+  .section::before {
+    inset: -40px 0;
+    background: radial-gradient(
+      90% 80px at 50% 0%,
+      rgba(255,255,255,0.04),
+      transparent 70%
+    );
+  }
+}
+
+@media (max-width: 860px) {
+  .stats {
+    gap: 10px;
+  }
+
+  .statValue {
+    font-size: 24px;
+  }
+
+  .statHint {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 860px) {
+  .card {
+    padding: 16px;
+  }
+
+  .card:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (max-width: 860px) {
+  .nav {
+    top: 10px;
+  }
+
+  .navLinks {
+    gap: 6px;
+  }
+
+  .navLinks .pill span {
+    display: none;
+  }
+
+  .navLinks .pill {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 860px) {
+  .glass {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+}
+
+/* visibility helpers */
+.desktopOnly { display: flex; }
+.mobileOnly { display: none; }
+
+@media (max-width: 860px) {
+  .desktopOnly { display: none; }
+  .mobileOnly { display: inline-flex; }
+}
+
+/* burger button */
+.burger {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+  color: white;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+/* mobile dropdown */
+.mobileMenu {
+  margin: 10px 16px 0 16px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.mobileMenu a {
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: rgba(255,255,255,0.86);
+}

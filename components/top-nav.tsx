@@ -1,7 +1,10 @@
-import { Github, Mail, ArrowUpRight } from 'lucide-react'
+'use client'
+
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Github, Mail, ArrowUpRight, Menu, X } from 'lucide-react'
 
 function MaskMark() {
-  // Original monochrome mark (inspired by masks/half-face shapes, not a copy)
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path
@@ -13,12 +16,15 @@ function MaskMark() {
 }
 
 export function TopNav({ username }: { username: string }) {
+  const [open, setOpen] = useState(false)
+
   const gh = `https://github.com/${username}`
   const mail = 'mailto:erik.oberbillig@sisag.ch'
 
   return (
     <header className="nav">
       <div className="glass navInner">
+        {/* Brand */}
         <div className="brand">
           <div className="brandMark" aria-hidden="true">
             <MaskMark />
@@ -30,7 +36,8 @@ export function TopNav({ username }: { username: string }) {
           </div>
         </div>
 
-        <nav className="navLinks" aria-label="Primary">
+        {/* Desktop navigation */}
+        <nav className="navLinks desktopOnly" aria-label="Primary">
           <a className="pill" href="#projects">
             <ArrowUpRight className="icon" />
             <span>Projects</span>
@@ -44,7 +51,39 @@ export function TopNav({ username }: { username: string }) {
             <span>Contact</span>
           </a>
         </nav>
+
+        {/* Mobile burger */}
+        <button
+          className="burger mobileOnly"
+          aria-label="Toggle menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X /> : <Menu />}
+        </button>
       </div>
+
+      {/* Mobile menu panel */}
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            className="glass mobileMenu"
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+          >
+            <a href="#projects" onClick={() => setOpen(false)}>
+              Projects
+            </a>
+            <a href={gh} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+              GitHub
+            </a>
+            <a href={mail} onClick={() => setOpen(false)}>
+              Contact
+            </a>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
