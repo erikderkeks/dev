@@ -11,7 +11,7 @@ export function Footer() {
               erikderkeks@gmail.com
             </div>
             <div style={{ marginTop: 6, color: 'rgba(255,255,255,0.46)' }}>
-              Monochrome liquid glass · calm, sharp, minimal
+              Open to interesting projects.
             </div>
           </div>
 

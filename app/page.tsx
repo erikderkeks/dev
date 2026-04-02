@@ -1,21 +1,16 @@
 import { TopNav } from '@/components/top-nav'
-import { Hero } from '@/components/hero'
-import { Stats } from '@/components/stats'
-import { Projects } from '@/components/projects'
+import { GitHubLive } from '@/components/github-live'
 import { Stack } from '@/components/stack'
 import { Footer } from '@/components/footer'
-import { getProfile, getRepos, pickFeatured, buildStats } from '@/lib/github'
+import { getProfile, getRepos } from '@/lib/github'
+
+const USERNAME = 'erikderkeks'
 
 export default async function Home() {
-  const username = 'erikderkeks'
-
   const [profile, repos] = await Promise.all([
-    getProfile(username),
-    getRepos(username),
+    getProfile(USERNAME),
+    getRepos(USERNAME),
   ])
-
-  const featured = pickFeatured(repos)
-  const stats = buildStats(profile, repos)
 
   return (
     <div className="page">
@@ -24,33 +19,9 @@ export default async function Home() {
 
       {/* Content */}
       <div className="container">
-        <TopNav username={username} />
+        <TopNav username={USERNAME} />
 
-        <Hero
-          name={profile?.name ?? 'Erik'}
-          handle={`@${username}`}
-          bio={
-            profile?.bio ??
-            'Dont build one time systems. Build echosystems.'
-          }
-          location={profile?.location ?? 'Switzerland'}
-        />
-
-        <section className="section" id="work">
-          <div className="sectionTitle">
-            <h2>Signals</h2>
-            <p>Minimal stats, maximum clarity</p>
-          </div>
-          <Stats stats={stats} />
-        </section>
-
-        <section className="section" id="projects">
-          <div className="sectionTitle">
-            <h2>Projects</h2>
-            <p>Selected from GitHub</p>
-          </div>
-          <Projects repos={featured} />
-        </section>
+        <GitHubLive initialProfile={profile} initialRepos={repos} />
 
         <section className="section" id="stack">
           <div className="sectionTitle">

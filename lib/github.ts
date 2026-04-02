@@ -30,8 +30,6 @@ const UA = 'liquid-ghoul-devpage'
 async function safeFetch<T>(url: string): Promise<T | null> {
   try {
     const res = await fetch(url, {
-      // Important: keep it static-friendly for Next export
-      cache: 'force-cache',
       headers: { 'User-Agent': UA, Accept: 'application/vnd.github+json' },
     })
     if (!res.ok) return null

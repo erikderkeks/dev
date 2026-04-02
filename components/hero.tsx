@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles, MapPin, ShieldCheck, Terminal } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 
 export function Hero({
   name,
@@ -44,18 +44,6 @@ export function Hero({
               <MapPin className="icon" />
               <span>{location}</span>
             </span>
-            <span className="pill">
-              <ShieldCheck className="icon" />
-              <span>Clean Systems</span>
-            </span>
-            <span className="pill">
-              <Terminal className="icon" />
-              <span>Craft</span>
-            </span>
-            <span className="pill">
-              <Sparkles className="icon" />
-              <span>Liquid Glass UI</span>
-            </span>
           </div>
         </motion.div>
 
@@ -69,10 +57,10 @@ export function Hero({
             <p className="kicker">Focus</p>
             <div className="sep" />
             <p style={{ margin: 0, color: 'rgba(255,255,255,0.78)', lineHeight: 1.55 }}>
-              Clean systems with power to expand
+              Building systems worth maintaining.
               <br />
               <span style={{ color: 'rgba(255,255,255,0.52)' }}>
-                Tokyo-at-night — without the noise.
+                From hobby projects to production grade.
               </span>
             </p>
           </div>
