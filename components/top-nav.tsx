@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, Mail, ArrowUpRight, Menu, X } from 'lucide-react'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { LangToggle } from '@/components/lang-toggle'
+import { T } from '@/components/t'
 
 function MaskMark() {
   return (
@@ -40,26 +43,31 @@ export function TopNav({ username }: { username: string }) {
         <nav className="navLinks desktopOnly" aria-label="Primary">
           <a className="pill" href="#projects">
             <ArrowUpRight className="icon" />
-            <span>Projects</span>
+            <span><T id="nav.projects" /></span>
           </a>
           <a className="pill" href={gh} target="_blank" rel="noreferrer">
             <Github className="icon" />
-            <span>GitHub</span>
+            <span><T id="nav.github" /></span>
           </a>
           <a className="pill" href={mail}>
             <Mail className="icon" />
-            <span>Contact</span>
+            <span><T id="nav.contact" /></span>
           </a>
         </nav>
 
-        {/* Mobile burger */}
-        <button
-          className="burger mobileOnly"
-          aria-label="Toggle menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X /> : <Menu />}
-        </button>
+        {/* Controls — always visible */}
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          <LangToggle />
+          <ThemeToggle />
+          {/* Mobile burger */}
+          <button
+            className="burger mobileOnly"
+            aria-label="Toggle menu"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu panel */}

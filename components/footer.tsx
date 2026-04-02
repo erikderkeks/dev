@@ -1,35 +1,12 @@
-import { Github, Mail } from 'lucide-react'
+'use client'
+
+import { T } from '@/components/t'
 
 export function Footer() {
   return (
-    <footer className="footer" id="contact">
-      <div className="glass" style={{ padding: 18 }}>
-        <div className="row" style={{ justifyContent: 'space-between' }}>
-          <div>
-            <div className="kicker">Contact</div>
-            <div style={{ marginTop: 8, color: 'rgba(255,255,255,0.72)' }}>
-              erikderkeks@gmail.com
-            </div>
-            <div style={{ marginTop: 6, color: 'rgba(255,255,255,0.46)' }}>
-              Open to interesting projects.
-            </div>
-          </div>
-
-          <div className="row">
-            <a className="pill" href="https://github.com/erikderkeks" target="_blank" rel="noreferrer">
-              <Github className="icon" />
-              <span>GitHub</span>
-            </a>
-            <a className="pill" href="mailto:erikderkeks@gmail.com">
-              <Mail className="icon" />
-              <span>Email</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div style={{ marginTop: 16, textAlign: 'center' }}>
-        © {new Date().getFullYear()} erikderkeks
+    <footer className="footer">
+      <div style={{ textAlign: 'center', color: 'var(--muted2)' }}>
+        © {new Date().getFullYear()} erikderkeks · <T id="footer.copy" />
       </div>
     </footer>
   )

@@ -31,6 +31,18 @@ jobs:
 
       - name: Build (static export)
         run: npm run build
+        env:
+          AZURE_DEVOPS_ORG: ${{ secrets.AZURE_DEVOPS_ORG }}
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+          AZURE_DEVOPS_AUTHOR_1: ${{ secrets.AZURE_DEVOPS_AUTHOR_1 }}
+          AZURE_DEVOPS_ORG_2: ${{ secrets.AZURE_DEVOPS_ORG_2 }}
+          AZURE_DEVOPS_PAT_2: ${{ secrets.AZURE_DEVOPS_PAT_2 }}
+          AZURE_DEVOPS_AUTHOR_2: ${{ secrets.AZURE_DEVOPS_AUTHOR_2 }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_USERNAME: ${{ secrets.WAKATIME_USERNAME }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
