@@ -514,20 +514,6 @@ button{ font-family: inherit; }
   position: relative;
 }
 
-/* weicher Übergang zwischen Sections */
-.section::before {
-  content: "";
-  position: absolute;
-  inset: -80px 0;
-  background: radial-gradient(
-    80% 120px at 50% 0%,
-    rgba(255,255,255,0.06),
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
 .section > * {
   position: relative;
   z-index: 1;
@@ -604,15 +590,6 @@ button{ font-family: inherit; }
 @media (max-width: 860px) {
   .section {
     padding: 44px 0;
-  }
-
-  .section::before {
-    inset: -40px 0;
-    background: radial-gradient(
-      90% 80px at 50% 0%,
-      rgba(255,255,255,0.04),
-      transparent 70%
-    );
   }
 }
 
@@ -726,6 +703,7 @@ button{ font-family: inherit; }
 /* --------- Heatmap --------- */
 .heatmapWrap {
   padding: 18px 20px 14px 20px;
+  overflow: visible;
 }
 
 .heatmapHeader {
@@ -750,68 +728,10 @@ button{ font-family: inherit; }
   font-family: var(--font-mono, monospace);
 }
 
-/* --------- Heatmap cell tooltip --------- */
+/* --------- Heatmap cell --------- */
 .heatCell {
   position: relative;
   cursor: default;
-}
-
-/* arrow */
-.heatCell::before {
-  content: '';
-  position: absolute;
-  bottom: calc(100% + 4px);
-  left: 50%;
-  transform: translateX(-50%) scale(0.8);
-  border: 5px solid transparent;
-  border-top-color: rgba(22, 22, 24, 0.96);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 120ms ease, transform 120ms ease;
-  z-index: 60;
-}
-
-/* bubble */
-.heatCell::after {
-  content: attr(data-tip);
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(4px) scale(0.94);
-  white-space: nowrap;
-  font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 11px;
-  line-height: 1.4;
-  padding: 5px 9px;
-  border-radius: 8px;
-  background: rgba(22, 22, 24, 0.96);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.82);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.55);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 120ms ease, transform 120ms ease;
-  z-index: 60;
-  backdrop-filter: blur(8px);
-}
-
-.heatCell:hover::before,
-.heatCell:hover::after {
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-}
-.heatCell:hover::after {
-  transform: translateX(-50%) translateY(0) scale(1);
-}
-
-[data-theme="light"] .heatCell::after {
-  background: rgba(255,255,255,0.96);
-  border-color: rgba(0,0,0,0.10);
-  color: rgba(0,0,0,0.80);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-}
-[data-theme="light"] .heatCell::before {
-  border-top-color: rgba(255,255,255,0.96);
 }
 
 /* --------- Heatmap cell levels --------- */
@@ -1635,7 +1555,6 @@ button{ font-family: inherit; }
 /* Sections */
 [data-theme="light"] .sectionTitle h2 { color: rgba(0,0,0,0.88); }
 [data-theme="light"] .sectionTitle p  { color: rgba(0,0,0,0.42); }
-[data-theme="light"] .section::before { background: radial-gradient(80% 120px at 50% 0%, rgba(0,0,0,0.03), transparent 70%); }
 /* Stats */
 [data-theme="light"] .statValue  { color: rgba(0,0,0,0.90); }
 [data-theme="light"] .statHint   { color: rgba(0,0,0,0.58); }
@@ -1824,7 +1743,14 @@ button{ font-family: inherit; }
   gap: 12px;
   margin-top: 14px;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
+}
+
+/* --------- Spotify Player --------- */
+.spotifyPlayer {
+  flex: 1;
+  min-width: 260px;
+  height: 90px;
 }
 
 /* =========================================================

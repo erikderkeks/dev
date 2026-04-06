@@ -13,13 +13,12 @@ import { ContactCard } from '@/components/contact-card'
 import { Footer } from '@/components/footer'
 import { TerminalWidget } from '@/components/terminal-widget'
 import { SectionReveal } from '@/components/section-reveal'
-import { SpotifyNow } from '@/components/spotify-now'
+import { SpotifyPlayer } from '@/components/spotify-player'
 import { WakaTimeWidget } from '@/components/wakatime-widget'
 import { VisitorCounter } from '@/components/visitor-counter'
 import { T } from '@/components/t'
 import { getProfile, getRepos, getGitHubEventDates, buildHeatmapData, buildStreakData, buildLangStats, buildWrappedStats } from '@/lib/github'
 import { getAdoCommitDates, getAdoRepoLanguages } from '@/lib/azuredevops'
-import { getSpotifyTrack } from '@/lib/spotify'
 import { getWakaStats } from '@/lib/wakatime'
 import { nowEntries, isAvailable } from '@/data/now'
 import { notes } from '@/data/notes'
@@ -29,13 +28,12 @@ import { timeline } from '@/data/timeline'
 const USERNAME = 'erikderkeks'
 
 export default async function Home() {
-  const [profile, repos, ghDates, adoDates, adoLangs, spotifyTrack, wakaStats] = await Promise.all([
+  const [profile, repos, ghDates, adoDates, adoLangs, wakaStats] = await Promise.all([
     getProfile(USERNAME),
     getRepos(USERNAME),
     getGitHubEventDates(USERNAME),
     getAdoCommitDates(365),
     getAdoRepoLanguages(),
-    getSpotifyTrack(),
     getWakaStats(),
   ])
 
@@ -155,7 +153,7 @@ export default async function Home() {
             </div>
             <ContactCard />
             <div className="contactFooterRow">
-              {spotifyTrack && <SpotifyNow track={spotifyTrack} />}
+              <SpotifyPlayer />
               <VisitorCounter />
             </div>
           </section>

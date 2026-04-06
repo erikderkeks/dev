@@ -1,12 +1,15 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useCallback, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 
 type Props = {
     /** full day-bucket map across all years: { "2025-04-01": 3 } */
     data: Record<string, number>
 }
+
+type TooltipState = { label: string; x: number; y: number } | null
 
 /** Format a Date as YYYY-MM-DD using local time (avoids UTC-offset day shift). */
 function localDateStr(d: Date): string {
@@ -69,6 +72,16 @@ export function ActivityHeatmap({ data }: Props) {
     }, [data, currentYear])
 
     const [selectedYear, setSelectedYear] = useState(currentYear)
+    const [tooltip, setTooltip] = useState<TooltipState>(null)
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => setMounted(true), [])
+
+    const showTooltip = useCallback((e: React.MouseEvent, label: string) => {
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
+        setTooltip({ label, x: rect.left + rect.width / 2, y: rect.top })
+    }, [])
+
+    const hideTooltip = useCallback(() => setTooltip(null), [])
 
     const weeks = useMemo(() => buildWeeksForYear(selectedYear), [selectedYear])
 
@@ -118,6 +131,7 @@ export function ActivityHeatmap({ data }: Props) {
     })
 
     return (
+        <>
         <motion.div
             className="glass heatmapWrap"
             initial={{ opacity: 0, y: 14 }}
@@ -200,7 +214,8 @@ export function ActivityHeatmap({ data }: Props) {
                                     <div
                                         key={col}
                                         className={`heatCell heatLevel${getHeatLevel(count)}`}
-                                        data-tip={label}
+                                        onMouseEnter={(e) => showTooltip(e, `${date} · ${count} commit${count !== 1 ? 's' : ''}`)}
+                                        onMouseLeave={hideTooltip}
                                         style={{
                                             width: CELL,
                                             height: CELL,
@@ -224,6 +239,35 @@ export function ActivityHeatmap({ data }: Props) {
                 <span style={{ color: 'var(--muted2)', fontSize: 11 }}>More</span>
             </div>
         </motion.div>
+
+        {/* Portal tooltip — renders into document.body to escape Framer Motion transform context */}
+        {mounted && tooltip && createPortal(
+            <div
+                style={{
+                    position: 'fixed',
+                    left: tooltip.x,
+                    top: tooltip.y - 10,
+                    transform: 'translate(-50%, -100%)',
+                    pointerEvents: 'none',
+                    zIndex: 9999,
+                    fontFamily: 'var(--font-mono, ui-monospace, monospace)',
+                    fontSize: 11,
+                    lineHeight: 1.4,
+                    padding: '5px 9px',
+                    borderRadius: 8,
+                    background: 'rgba(22, 22, 24, 0.96)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    color: 'rgba(255,255,255,0.82)',
+                    boxShadow: '0 6px 24px rgba(0,0,0,0.55)',
+                    backdropFilter: 'blur(8px)',
+                    whiteSpace: 'nowrap',
+                }}
+            >
+                {tooltip.label}
+            </div>,
+            document.body
+        )}
+    </>
     )
 }
 

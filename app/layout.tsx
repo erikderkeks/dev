@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { ScrollProgressBar } from '@/components/scroll-progress'
+import { PageTitle } from '@/components/page-title'
 import { LangProvider } from '@/contexts/lang-context'
 import { ToastProvider } from '@/contexts/toast-context'
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ScrollProgressBar />
+        <PageTitle />
         <LangProvider>
           <ToastProvider>
             {children}
